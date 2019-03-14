@@ -1,0 +1,6 @@
+#!/bin/bash
+# prepend text to filename
+#
+for i in *.mp3;
+	do mv "$i" "jimmy riley - $i";
+done

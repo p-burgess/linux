@@ -1,0 +1,37 @@
+#!/bin/bash
+# This script is a sed substitution. The part between the first and 
+# second / is the regex to seach for and the part between the second 
+# and third, what to replace it with.
+# . matches anything
+# * repeats any number of times
+# for f in *.mp3; do mv "$f" "`echo $f | sed 's/1985 - //'`"; done
+# for f in *.mp3; do mv "$f" "`echo $f | sed 's/1981 - //'`"; done
+# for f in *.mp3; do mv "$f" "`echo $f | sed 's/.*1984 - //'`"; done
+# for f in *.mp3; do mv "$f" "`echo $f | sed 's/.*1983 - //'`"; done
+# for f in *.mp3; do mv "$f" "`echo $f | sed 's/.*1982 - //'`"; done
+# for f in *.mp3; do mv "$f" "`echo $f | sed 's/.*1981 - //'`"; done
+# for f in *.mp3; do mv "$f" "`echo $f | sed 's/.*1980 - //'`"; done
+# for f in *.mp3; do mv "$f" "`echo $f | sed 's/.*1979 - //'`"; done
+# for f in *.mp3; do mv "$f" "`echo $f | sed 's/.*1978 - //'`"; done
+# for f in *.mp3; do mv "$f" "`echo $f | sed 's/.* A - //'`"; done
+# for f in *.mp3; do mv "$f" "`echo $f | sed 's/.* B - //'`"; done
+# for f in *.mp3; do mv "$f" "`echo $f | sed 's/.* AA - //'`"; done
+# for f in *.mp3; do mv "$f" "`echo $f | sed 's/(1.mp3/.mp3/'`"; done
+ for f in *.mp3; do mv "$f" "`echo $f | sed 's/ .mp3/.mp3/'`"; done
+ for f in *.mp3; do mv "$f" "`echo $f | sed 's/ (1.mp3/.mp3/'`"; done
+
+# remove pattern
+# for f in *.mp3; do mv "$f" "`echo $f | sed 's/ (//'`"; done
+
+# to change files named *-1.0-SNAPSHOT.war to *.war
+#
+#	for i in *.war; 
+#		do mv ${i} `echo ${i} | sed 's/-1.0-SNAPSHOT\.war/\.war/'`; 
+#	done
+
+
+# prepend text to filename
+#
+#for i in *.mp3;
+#	do mv "$i" "Jimmy Riley - $f;
+#done
