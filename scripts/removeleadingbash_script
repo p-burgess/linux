@@ -1,0 +1,11 @@
+#!/bin/bash
+# This script is a bash prefix substitution. 
+# '${VARIABLE#PREFIX}'
+#	Substitue the value of VARIABLE, but first discard from that
+#	variable any position at the begining that matches the pattern
+#	PREFIX.
+
+#for f in *.wav; do mv "${f}" "${f#* A - }"; done
+
+# remove leading whitespace characters
+for f in *.wav; do mv "${f}" "${f%%[![:space:]]*}" ; done

@@ -1,0 +1,8 @@
+#!/bin/bash
+# This script is a sed substitution. The part between the first and 
+# second / is the regex to seach for and the part between the second 
+# and third, what to replace it with.
+# . matches anything
+# * repeats any number of times
+
+ for f in *.wav; do mv "$f "'echo $f | sed 's/.*1980 -//'"; done

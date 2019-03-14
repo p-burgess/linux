@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# This will convert all *.wav files in 
+# the current directory to .mp3 files if
+# they do not have a converted copy
+# already in-place (LAME doesn't care
+# about clobbering output files).
+
+for f in *.wav; do lame  -h -v 0 -b 96 --resample 44.1 "$f" resample/"$f" ; done

@@ -1,0 +1,10 @@
+#!/bin/bash
+# This script removes the first 18 
+# characters of mp3 files that begin 
+# with studio*
+
+for i in ./studio*.mp3
+do
+    mv "$i" "./${i:18}"
+done
+
