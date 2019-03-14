@@ -1,0 +1,143 @@
+//
+// named.conf
+//
+// Provided by Red Hat bind package to configure the ISC BIND named(8) DNS
+// server as a caching only nameserver (as a localhost DNS resolver only).
+//
+// See /usr/share/doc/bind*/sample/ for example named configuration files.
+//
+
+options {
+        listen-on port 53 {
+                127.0.0.1;
+                34.251.151.148;
+         };
+
+        listen-on-v6 port 53 { ::1; };
+        directory       "/var/named";
+        dump-file       "/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+        allow-query     {
+                localhost;
+                127/8;
+                192.168/16; };
+        allow-transfer {
+                192.168/16;
+                127/8;
+        };
+
+        recursion yes;
+
+        dnssec-enable yes;
+        dnssec-validation yes;
+        dnssec-lookaside auto;
+
+        /* Path to ISC DLV key */
+        bindkeys-file "/etc/named.iscdlv.key";
+
+        managed-keys-directory "/var/named/dynamic";
+};
+
+logging {
+        channel default_debug {
+                file "data/named.run";
+                severity dynamic;
+        };
+};
+
+//
+// nameserver config for domain obss.local
+//
+
+//
+// Access Control Statement
+//
+
+acl "trusted-subnet" { 192.168.0.0/24; };
+
+view "internal" {       // What the home network will see
+
+        match-clients {
+                localnets;
+                localhost;
+                "trusted-subnet";
+        };
+        recursion yes;
+        zone "." IN {
+                type hint;
+                file "named.ca";
+        };
+        zone "localhost" IN {
+                type master;
+                file "db.localhost";
+//              allow-update { none; };
+        };
+        zone "0.0.127.in-addr.arpa" IN {
+                type master;
+                file "db.127.0.0";
+//              allow-update ( none; };
+        };
+        // prevents lookups for broadcast addressess ending in ".255"
+        zone "255.in-addr.arpa" IN {
+                type master;
+                file "db.255";
+//              allow-update { none; };
+        };
+        // prevents lookups for broadcast addressess ending in ".0"
+        zone "0.in-addr.arpa" IN {
+                type master;
+                file "db.0";
+//              allow-update { none; };
+        };
+//        zone "0.168.192.in-addr.arpa" IN {
+//                type master;
+//                file "db.192.168.0";
+//              allow-update { none; };
+//        };
+        zone "enenet.co.uk" IN {
+                type master;
+                file "db.enenet.co.uk";
+                allow-query { any; };
+        };
+        zone "148.151.251.34.in-addr.arpa" IN {
+                type master;
+                file "db.151.251.34";
+        };
+};
+
+view "external" {       // What the internet will see
+        match-clients { any; };
+        recursion no;
+        zone "148.151.251.34.in-addr.arpa" IN {
+                type master;
+                file "db.151.251.34";
+        };
+        zone "enenet.co.uk" IN {
+                type master;
+                file "db.enenet.co.uk";
+                allow-query { any; };
+        };
+// prevents lookups for broadcast addressess ending in ".255"
+        zone "255.in-addr.arpa" IN {
+                type master;
+                file "db.255";
+//              allow-update { none; };
+        };
+// prevents lookups for broadcast addressess ending in ".0"
+        zone "0.in-addr.arpa" IN {
+                type master;
+                file "db.0";
+//              allow-update { none; };
+        };
+};
+
+// end of insert from obss.local
+
+//zone "." IN {
+//      type hint;
+//      file "named.ca";
+//};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";

@@ -1,0 +1,11 @@
+$TTL	3D
+@	IN 	SOA	ns.enenet.co.uk. admin.enenet.co.uk. (
+			201712061 	; serial 
+			3H 		; refresh
+			15M 		; retry
+			1W 		; expiry
+			1D ) 		; minimum
+
+	IN	NS	ns.enenet.co.uk.
+1	IN	PTR	localhost.enenet.co.uk.
+

@@ -1,0 +1,17 @@
+$TTL 3D
+@	IN	SOA	ns.enenet.co.uk. admin.enenet.co.uk. (
+			2017120601  	; serial number
+			8H   		; refresh, seconds
+			2H  		; retry, seconds
+			4W  		; expire, seconds
+			1D )  		; minimum, seconds
+
+;
+; Name servers
+;
+		NS	ns.enenet.co.uk.
+;
+; Addresses point to canonical name
+;
+148.151.251.34.in-addr.arpa.	IN	PTR	ns.enenet.co.uk.
+
