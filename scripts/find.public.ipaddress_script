@@ -1,0 +1,1 @@
+wget -qO- http://instance-data/latest/meta-data/public-ipv4 > ~/public-ipv4
