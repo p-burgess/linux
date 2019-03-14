@@ -16,9 +16,9 @@
     <stream>
         <!-- metadata used for stream listing (not currently used) -->
         <metadata>
-            <name>Example stream name</name>
-            <genre>Example genre</genre>
-            <description>A short description of your stream</description>
+            <name>####</name>
+            <genre>####</genre>
+            <description>####</description>
         </metadata>
 
         <!-- input module
@@ -59,10 +59,10 @@
                 the source password and mountpoint.  -->
             <!--<hostname>localhost</hostname>-->
             <hostname>127.0.0.1</hostname>
-            <port>8000</port>
-            <password>moduation</password>
+            <port>####</port>
+            <password>####</password>
             <mount>/example1.mp3</mount>
-            <!--<mount>/example1.ogg</mount>-->
+            <!--<mount>/####.ogg</mount>-->
 
             <!-- Reconnect parameters:
                 When something goes wrong (e.g. the server crashes, or the
