@@ -1,0 +1,23 @@
+#!/bin/sh
+#   The first grep looks for lines containing urls. You can add more 
+#    elements after if you want to look only on local pages, so no http, 
+#    but relative path.
+#   The first sed will add a newline in front of each a href url tag
+#    with the \n
+#   The second sed will shorten each url after the 2nd " in the line 
+#    by replacing it with the /a tag with a newline Both seds will give 
+#    you each url on a single line, but there is garbage, so
+#   The 2nd grep href cleans the mess up
+#   The sort and uniq will give you one instance of each existing url 
+#    present in the sourcepage.html
+
+
+#grep "<option value=" sportinglife_3.txt
+#  |sed "s/<option value/\\n<option value/g" 
+#  |sed 's/\"/\"><\/a>\n/2'
+#  |grep href
+#  |sort |uniq
+
+#  strip out the http links from an html file
+#sed -n 's/.*value="\([^"]*\).*/\1/p' sportinglife_3.txt
+sed -n 's/.*href="\([^"]*\).*/\1/p' sportinglife_3.txt
