@@ -19,4 +19,4 @@ echo "Usage radio start|stop"
 ;;
 esac
 
-# this file is placed in /user/bin for systemctl interface
+# this file is placed in /user/bin for command line interface of internet radio
