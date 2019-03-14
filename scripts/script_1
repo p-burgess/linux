@@ -1,0 +1,5 @@
+
+#!/bin/bash
+# remove illegal characters from 
+# old.c to new.c
+tr -cd '\11\12\15\40-\176' < ./hash_table_1.c > ./hash_table_2.c
