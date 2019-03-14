@@ -1,0 +1,9 @@
+#!/bin/bash
+
+sudo yum install -y curl-devel libtheora-devel libvorbis-devel libxslt-devel speex-devel libxslt
+sudo rpm –import http://apt.sw.be/RPM-GPG-KEY.dag.txt
+ cd /home
+sudo wget http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm
+sudo mkdir -p /usr/src/icecast
+sudo cd /usr/src/icecast
+sudo wget http://downloads.xiph.org/releases/icecast/icecast-2.3.3.tar.gz
