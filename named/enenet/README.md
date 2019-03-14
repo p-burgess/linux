@@ -1,1 +1,1 @@
-AWS backup DNS server
+AWS backup DNS server adapted from TrinityOS
