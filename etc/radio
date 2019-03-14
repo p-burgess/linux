@@ -1,0 +1,22 @@
+#!/bin/bash
+case $1 in
+start)
+cd /home/ec2-user/server/
+./sc_serv &
+# ./sc_serv_linux 
+;;
+stop)
+pkill sc_serv
+# pkil sc_trans_linux
+;;
+start_daemon)
+cd /home/ec2-user/server/
+./sc_serv daemon
+# ./sc_trans_linux &&
+;;
+*)
+echo "Usage radio start|stop"
+;;
+esac
+
+# this file is placed in /user/bin for systemctl interface
