@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+# /etc/rc.d/rc.local:  Local system initialization script.
+#
+# Put any local setup commands in here:
+# This will overwrite /etc/issue at every boot. So, make any changes you
+# want to make to /etc/issue here or you will lose them at reboot.
+echo "" > /etc/issue
+echo "Slackware Linux $R" >> /etc/issue
+echo "kernel $(uname -r) on $a $(uname -m) (\l)" >> /etc/issue
+#
+cp -f /etc/issue /etc/issue.net
+#
+# This will put the output from dmesg into a file
+dmesg >> /etc/info/dmesg
+#
+# This will execute dhcpd on internal networks
+route add -host 255.255.255.255 dev eth1
+/usr/sbin/dhcpd eth1
+#
+# This is for upnp
+route add -net 239.0.0.0 netmask 255.0.0.0 eth1
+upnpd eth0 eth1
+#
+# This will overwrite /etc/resolv.conf at every boot, activating
+# primary DNS server. So make any changes you want to make to /etc/resolv.conf
+# here or they will be lost at reboot.
+echo "domain ####" > /etc/resolv.conf
+echo "nameserver 127.0.0.1" >> /etc/resolv.conf
+#
+# This will set the FQDN to ####
+hostname ####
+domainname ####
+#
+# start IPsec
+#
+# load modules
+modprobe af_key
+modprobe ah4
+modprobe esp4
+modprobe ipcomp
+modprobe xfrm_user
+#
+# start pluto
+ipsec pluto
