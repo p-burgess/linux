@@ -1,0 +1,18 @@
+$TTL 3D
+@	IN	SOA	obss-server.obss-local. root.obss.local. (
+			2012022401  	; serial number
+			8H   		; refresh, seconds
+			2H  		; retry, seconds
+			4W  		; expire, seconds
+			1D )  		; minimum, seconds
+
+;
+; Name servers
+;
+		NS	obss-server
+;
+; Addresses point to canonical name
+;
+1	IN	PTR	obss-server.obss.local.
+2	IN	PTR	obss-winserver.obss.local.
+

@@ -1,0 +1,139 @@
+options {
+	directory "/etc/bind";
+
+	// If there is a firewall between you and nameservers you want
+	// to talk to, you may need to fix the firewall to allow multiple
+	// ports to talk.  See http://www.kb.cert.org/vuls/id/800113
+
+	// If your ISP provided one or more IP addresses for stable 
+	// nameservers, you probably want to use them as forwarders.  
+	// Uncomment the following block, and insert the addresses replacing 
+	// the all-0's placeholder.
+
+//	forward first;
+	forwarders {
+//		127.0.0.1;
+	 	192.168.254.100;
+	 };
+
+	auth-nxdomain no;    # conform to RFC1035
+
+	listen-on {
+	 	127.0.0.1; 
+//		192.168.0.1; 
+		192.168.1.1; 
+	};
+	allow-query {
+		127/8;
+		192.168/16;
+	};
+	query-source address * port 53;
+	// optional - disables transfers except from internal network
+	allow-transfer { 
+		192.168/16; 
+		127/8; 
+	};
+	notify no;
+//	allow-update { 192.168.1.1; };
+	listen-on-v6 { any; };
+};
+
+logging {
+	channel obss_log {
+		file "/var/log/dns.log" versions 3;
+		severity info;
+	};
+	category default {
+		obss_log;
+	};
+};
+
+//controls {
+//	inet 127.0.0.1 allow { localhost; };
+//};
+
+// 
+// nameserver config for domain obss.local
+// 
+
+//
+// Access Control Statement
+//
+
+acl "trusted-subnet" { 192.168.1.0/24; };
+
+view "internal" { 	// What the home network will see
+
+	match-clients { 
+		localnets;
+		localhost;
+		"trusted-subnet";
+	};
+	recursion yes;
+	zone "." IN {
+		type hint;
+		file "db.cache";
+	};
+	zone "localhost" IN {
+		type master;
+		file "db.localhost";
+//		allow-update { none; };
+	};
+	zone "0.0.127.in-addr.arpa" IN {
+		type master;
+		file "db.127.0.0";
+//		allow-update ( none; };
+	};
+	// prevents lookups for broadcast addressess ending in ".255"
+	zone "255.in-addr.arpa" IN {
+		type master;
+		file "db.255";
+//		allow-update { none; };
+	};
+	// prevents lookups for broadcast addressess ending in ".0"
+	zone "0.in-addr.arpa" IN {
+		type master;
+		file "db.0";
+//		allow-update { none; };
+	};
+	zone "1.168.192.in-addr.arpa" IN {
+		type master;
+		file "db.192.168.1";
+//		allow-update { none; };
+	};
+	zone "obss.local" IN {
+		type master;
+		file "db.obss.local";
+		allow-query { any; };
+	};
+	zone "254.168.192.in-addr.arpa" IN {
+		type master;
+		file "db.192.168.254";
+	};
+};
+
+view "external" { 	// What the internet will see
+	match-clients { any; };
+	recursion no;
+	zone "254.168.192.in-addr.arpa" IN {
+		type master;
+		file "db.254.168.192";
+	};
+	zone "obss.local" IN {
+		type master;
+		file "db.obss.local";
+		allow-query { any; };
+	};
+// prevents lookups for broadcast addressess ending in ".255"
+	zone "255.in-addr.arpa" IN {
+		type master;
+		file "db.255";
+//		allow-update { none; };
+	};
+// prevents lookups for broadcast addressess ending in ".0"
+	zone "0.in-addr.arpa" IN {
+		type master;
+		file "db.0";
+//		allow-update { none; };
+	};
+};

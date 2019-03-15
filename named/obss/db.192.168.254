@@ -1,0 +1,10 @@
+$TTL	3D
+@	IN	SOA	obss-server.obss.local.	root.obss.local. (
+			2012022401		; serial number
+			10800			; refresh	
+			3600			; retry
+			864000			; expire
+			86400)			; minimumm TTL
+			
+			IN	NS	obss-server.obss.local.
+1			IN 	PTR	obss-server.obss.local.
