@@ -1,0 +1,31 @@
+$TTL 3D
+@	IN	SOA	lion.rasirootz.ca. admin.rasirootz.ca. (
+			2005051802 	 	; serial number
+			8H   			; refresh, seconds
+			2H  			; retry, seconds
+			4W  			; expire, seconds
+			1D )  			; minimum, seconds
+
+;
+; Name servers
+;
+		NS	lion
+		NS	lion.rasirootz.ca.
+
+;
+; Addresses point to canonical name
+;
+1		PTR	lion.rasirootz.ca.
+15		PTR	laptop.rasirootz.ca.
+
+;
+; Workstations
+;
+50		PTR	dhcp-192-168-0-50.rasirootz.ca.
+49		PTR	dhcp-192-168-0-49.rasirootz.ca.
+48		PTR	dhcp-192-168-0-48.rasirootz.ca.
+47		PTR	dhcp-192-168-0-47.rasirootz.ca.
+46		PTR	dhcp-192-168-0-46.rasirootz.ca.
+45		PTR	dhcp-192-168-0-45.rasirootz.ca.
+44		PTR	dhcp-192-168-0-44.rasirootz.ca.
+43		PTR	dhcp-192-168-0-43.rasirootz.ca.

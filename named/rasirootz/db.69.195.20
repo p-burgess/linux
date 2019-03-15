@@ -1,0 +1,10 @@
+$TTL	3D
+@	IN	SOA	lion.rasirootz.ca.	admin.rasirootz.ca. (
+			2005051801		; serial number
+			10800			; refresh	
+			3600			; retry
+			864000			; expire
+			86400)			; minimumm TTL
+			
+			IN	NS	lion.rasirootz.ca.
+117			IN 	PTR	lion.rasirootz.ca.

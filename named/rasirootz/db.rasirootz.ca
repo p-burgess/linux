@@ -1,0 +1,41 @@
+$TTL 86400
+@	IN	 SOA	lion.rasirootz.ca. admin.rasirootz.ca. (
+			2005051802 ; serial
+			86400      ; refresh (1 day)
+			7200       ; retry (2 hours)
+			8640000    ; expire (14 weeks 2 days)
+			86400)     ; minimum (1 day)
+
+;
+; Name Servers
+;
+	IN	NS	lion.rasirootz.ca.
+
+;
+; Mail Servers
+;
+	IN	MX	10 lion.rasirootz.ca.
+	TXT	"rasIrootz"
+;
+; Server Host Definitions
+;
+lion	IN	A	69.195.20.117
+		HINFO	"PC" "Linux"
+	IN	MX	10 lion.rasirootz.ca.	
+		TXT	"ras I rootz"
+
+localhost	IN	A	127.0.0.1
+	IN	MX	10 lion.rasirootz.ca.
+		
+; 
+; non-Server Domain Hosts;
+;
+laptop	IN	A	192.168.3.15
+		HINFO	"PC" "Windows XP"
+
+;
+; Aliases
+;
+mail			CNAME	lion.rasirootz.ca.
+www			CNAME	lion.rasirootz.ca.
+ftp			CNAME	lion.rasirootz.ca.
