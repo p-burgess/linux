@@ -9,7 +9,7 @@
 #  H        - host (/netmask)
 #  X        - multicast address (224.0.0.0 - 239.255.255.255)
 #
-#
+#  dstprt   - destination port (default-8472)
 nmcli con add type bridge con-name br-X1     ifname br-X1     ipv4.method manual ipv4.address Y1.H/24 ipv6.method disabled ethernet.mtu 1400 \
 nmcli con add type vxlan  con-name vxlan-X1  ifname vxlan-X1 remote 224.0.0.X id Z1 dev DEV ipv4.method disabled ipv6.method disabled connection.master br-X1  connection.slave-type bridge local 192.168.y1.H ethernet.mtu 1450 \
 && \
