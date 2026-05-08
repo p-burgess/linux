@@ -1,6 +1,6 @@
 #
-# nmcli script to configure 3 bridges on 3 vxlans, using multicast on a localnetwork
-# extends the bridge over a domain, useful for openstack
+# nmcli script to configure 3 bridges, connected to 3 vxlans, using multicast on a local network
+# extends a bridge over a network domain, useful for openstack
 #
 #  X1,X2,X3 - name of bridge
 #  Y1,Y2,Y3 - network of bridge
